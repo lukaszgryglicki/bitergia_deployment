@@ -1,2 +1,2 @@
 #!/bin/bash
-perceval gerrit --user lukaszgryglicki gerrit.onosproject.org > opennetworkinglab_onos.gerrit.log
+perceval gerrit --user lukaszgryglicki gerrit.onosproject.org > perceval_opennetworkinglab_onos.gerrit.log
