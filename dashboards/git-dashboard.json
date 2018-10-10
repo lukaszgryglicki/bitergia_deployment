@@ -5,7 +5,7 @@
             "description": "",
             "hits": 0,
             "kibanaSavedObjectMeta": {
-                "searchSourceJSON": "{\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":\"Empty Commits\",\"disabled\":false,\"index\":"onos_git",\"key\":\"files\",\"negate\":true,\"value\":\"0\"},\"query\":{\"match\":{\"files\":{\"query\":\"0\",\"type\":\"phrase\"}}}},{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":\"Bots\",\"disabled\":false,\"index\":"onos_git",\"key\":\"author_bot\",\"negate\":true,\"value\":\"true\"},\"query\":{\"match\":{\"author_bot\":{\"query\":1,\"type\":\"phrase\"}}}},{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+                "searchSourceJSON": "{\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":\"Empty Commits\",\"disabled\":false,\"index\":\"onos_git\",\"key\":\"files\",\"negate\":true,\"value\":\"0\"},\"query\":{\"match\":{\"files\":{\"query\":\"0\",\"type\":\"phrase\"}}}},{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":\"Bots\",\"disabled\":false,\"index\":\"onos_git\",\"key\":\"author_bot\",\"negate\":true,\"value\":\"true\"},\"query\":{\"match\":{\"author_bot\":{\"query\":1,\"type\":\"phrase\"}}}},{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
             },
             "optionsJSON": "{\"darkTheme\":false}",
             "panelsJSON": "[{\"col\":7,\"id\":\"git_commits_timezone\",\"panelIndex\":2,\"row\":9,\"size_x\":6,\"size_y\":2,\"title\":\"Commits by Time Zone\",\"type\":\"visualization\"},{\"col\":2,\"id\":\"git_evolution_authors\",\"panelIndex\":3,\"row\":3,\"size_x\":5,\"size_y\":2,\"title\":\"Authors\",\"type\":\"visualization\"},{\"col\":2,\"id\":\"git_evolution_commits\",\"panelIndex\":4,\"row\":1,\"size_x\":5,\"size_y\":2,\"title\":\"Commits\",\"type\":\"visualization\"},{\"col\":1,\"id\":\"git_main_numbers\",\"panelIndex\":6,\"row\":1,\"size_x\":1,\"size_y\":4,\"title\":\"Git\",\"type\":\"visualization\"},{\"col\":1,\"id\":\"git_top_authors\",\"panelIndex\":8,\"row\":5,\"size_x\":6,\"size_y\":4,\"title\":\"Statistics by Author\",\"type\":\"visualization\"},{\"col\":7,\"id\":\"git_top_projects\",\"panelIndex\":9,\"row\":1,\"size_x\":3,\"size_y\":3,\"title\":\"Projects\",\"type\":\"visualization\"},{\"col\":7,\"id\":\"git_top_repositories\",\"panelIndex\":10,\"row\":11,\"size_x\":6,\"size_y\":3,\"title\":\"Statistics by Repository\",\"type\":\"visualization\"},{\"col\":1,\"id\":\"git_domains_table\",\"panelIndex\":11,\"row\":9,\"size_x\":6,\"size_y\":5,\"title\":\"Statistics by Domain\",\"type\":\"visualization\"},{\"col\":10,\"id\":\"git_commits_domain\",\"panelIndex\":12,\"row\":1,\"size_x\":3,\"size_y\":3,\"title\":\"Domains\",\"type\":\"visualization\"},{\"col\":7,\"id\":\"git_evolution_domains\",\"panelIndex\":13,\"row\":4,\"size_x\":6,\"size_y\":5,\"title\":\"Commits by Domain\",\"type\":\"visualization\"}]",
@@ -40,7 +40,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\"index\":"onos_git",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+                    "searchSourceJSON": "{\"index\":\"onos_git\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
                 },
                 "title": "git_commits_timezone",
                 "uiStateJSON": "{}",
@@ -53,7 +53,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\n  \"index\": "onos_git",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"*\",\n      \"analyze_wildcard\": true\n    }\n  },\n  \"filter\": []\n}"
+                    "searchSourceJSON": "{\n  \"index\": \"onos_git\",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"*\",\n      \"analyze_wildcard\": true\n    }\n  },\n  \"filter\": []\n}"
                 },
                 "title": "git_evolution_authors",
                 "uiStateJSON": "{}",
@@ -66,7 +66,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\"index\":"onos_git",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+                    "searchSourceJSON": "{\"index\":\"onos_git\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
                 },
                 "title": "git_evolution_commits",
                 "uiStateJSON": "{}",
@@ -79,7 +79,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\n  \"index\": "onos_git",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"*\",\n      \"analyze_wildcard\": true\n    }\n  },\n  \"filter\": []\n}"
+                    "searchSourceJSON": "{\n  \"index\": \"onos_git\",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"*\",\n      \"analyze_wildcard\": true\n    }\n  },\n  \"filter\": []\n}"
                 },
                 "title": "git_main_numbers",
                 "uiStateJSON": "{}",
@@ -92,7 +92,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\"index\":"onos_git",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+                    "searchSourceJSON": "{\"index\":\"onos_git\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
                 },
                 "title": "git_top_authors",
                 "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
@@ -105,7 +105,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\"index\":"onos_git",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+                    "searchSourceJSON": "{\"index\":\"onos_git\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
                 },
                 "title": "git_top_projects",
                 "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
@@ -118,7 +118,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\"index\":"onos_git",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+                    "searchSourceJSON": "{\"index\":\"onos_git\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
                 },
                 "title": "git_top_repositories",
                 "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
@@ -131,7 +131,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\n  \"index\": "onos_git",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"*\",\n      \"analyze_wildcard\": true\n    }\n  },\n  \"filter\": []\n}"
+                    "searchSourceJSON": "{\n  \"index\": \"onos_git\",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"*\",\n      \"analyze_wildcard\": true\n    }\n  },\n  \"filter\": []\n}"
                 },
                 "title": "git_domains_table",
                 "uiStateJSON": "{\n  \"vis\": {\n    \"params\": {\n      \"sort\": {\n        \"columnIndex\": null,\n        \"direction\": null\n      }\n    }\n  }\n}",
@@ -144,7 +144,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\"index\":"onos_git",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+                    "searchSourceJSON": "{\"index\":\"onos_git\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
                 },
                 "title": "git_commits_domain",
                 "uiStateJSON": "{}",
@@ -157,7 +157,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\"index\":"onos_git",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+                    "searchSourceJSON": "{\"index\":\"onos_git\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
                 },
                 "title": "git_evolution_domains",
                 "uiStateJSON": "{}",

@@ -39,7 +39,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\"index\":"onos_github",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+                    "searchSourceJSON": "{\"index\":\"onos_github\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
                 },
                 "title": "github_main_numbers",
                 "uiStateJSON": "{}",
@@ -52,7 +52,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\"index\":"onos_github",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+                    "searchSourceJSON": "{\"index\":\"onos_github\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
                 },
                 "title": "github_evolution_issues",
                 "uiStateJSON": "{\"vis\":{\"legendOpen\":false}}",
@@ -65,7 +65,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\"index\":"onos_github",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+                    "searchSourceJSON": "{\"index\":\"onos_github\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
                 },
                 "title": "github_evolution_submitters",
                 "uiStateJSON": "{\"vis\":{\"legendOpen\":false}}",
@@ -78,7 +78,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\"index\":"onos_github",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+                    "searchSourceJSON": "{\"index\":\"onos_github\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
                 },
                 "title": "github_top_projects",
                 "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
@@ -91,7 +91,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\"index\":"onos_github",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+                    "searchSourceJSON": "{\"index\":\"onos_github\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
                 },
                 "title": "github_is_pull_request",
                 "uiStateJSON": "{}",
@@ -104,7 +104,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\"index\":"onos_github",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+                    "searchSourceJSON": "{\"index\":\"onos_github\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
                 },
                 "title": "github_top_submitters",
                 "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
@@ -117,7 +117,7 @@
             "value": {
                 "description": "",
                 "kibanaSavedObjectMeta": {
-                    "searchSourceJSON": "{\"index\":"onos_github",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+                    "searchSourceJSON": "{\"index\":\"onos_github\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
                 },
                 "title": "github_map_submitters",
                 "uiStateJSON": "{\"mapCenter\":[14.944784875088372,4.921875]}",
