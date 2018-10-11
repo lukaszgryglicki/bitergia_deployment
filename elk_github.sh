@@ -13,5 +13,6 @@ if [ -z "${IDENTITIES}" ]
 then
   p2o.py --enrich --index onos_github_raw --index-enrich onos_github -e http://localhost:9200 --no_inc --debug --db-host localhost --db-sortinghat shdb --db-user shuser --db-password "${PASS}" github opennetworkinglab onos -t "${API_KEY}"
 else
+  echo "Only identities mode"
   p2o.py --only-enrich --refresh-identities --index onos_github_raw --index-enrich onos_github -e http://localhost:9200 --no_inc --debug --db-host localhost --db-sortinghat shdb --db-user shuser --db-password "${PASS}" github opennetworkinglab onos -t "${API_KEY}"
 fi
