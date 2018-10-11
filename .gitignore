@@ -106,4 +106,4 @@ venv.bak/
 
 # LG: others
 /opennetworkinglab_onos.git/*
-*.swp
+/json2hat
