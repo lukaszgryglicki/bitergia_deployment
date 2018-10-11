@@ -48,7 +48,24 @@ func emailDecode(line string) string {
 	return re.ReplaceAllString(line, `$1@$2`)
 }
 
+func updateProfile(db *sql.DB, uuid string, user *gitHubUser) {
+	query := ""
+	var cols []string
+	var args []interface{}
+	if user.Sex != nil && (*user.Sex == "m" || *user.Sex == "f") {
+		gender := "male"
+		if *user.Sex == "f" {
+			gender = "female"
+		}
+		cols = append(cols, "gender")
+		args = append(args, gender)
+	}
+	_, err := db.Exec(query, args...)
+	fatalOnError(err)
+}
+
 func importAffs(db *sql.DB, users *gitHubUsers) {
+	// Fetch existing identities
 	rows, err := db.Query("select uuid, email, username, source from identities")
 	fatalOnError(err)
 	var uuid string
@@ -77,6 +94,19 @@ func importAffs(db *sql.DB, users *gitHubUsers) {
 	fatalOnError(rows.Err())
 	fatalOnError(rows.Close())
 
+	// Fetch current organizations
+	rows, err = db.Query("select id, name from organizations")
+	fatalOnError(err)
+	var name string
+	var id int
+	oname2id := make(map[string]int)
+	for rows.Next() {
+		fatalOnError(rows.Scan(&id, &name))
+		oname2id[name] = id
+	}
+	fatalOnError(rows.Err())
+	fatalOnError(rows.Close())
+
 	// Process all JSON entries
 	hits := 0
 	for _, user := range *users {
@@ -94,7 +124,9 @@ func importAffs(db *sql.DB, users *gitHubUsers) {
 			uuids[uuid] = struct{}{}
 		}
 		if len(uuids) > 0 {
-			fmt.Printf("%s/%s: %+v\n", login, email, uuids)
+			for uuid := range uuids {
+				updateProfile(db, uuid, &user)
+			}
 			hits++
 		}
 	}
