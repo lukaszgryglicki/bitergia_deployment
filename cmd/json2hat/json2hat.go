@@ -121,7 +121,11 @@ func addOrganization(db *sql.DB, company string) int {
 	return id
 }
 
-func addEnrollment(db *sql.DB, uuid string, companyID int, dtFrom, dtTo time.Time) {
+func addEnrollment(db *sql.DB, uuid string, companyID int, from, to time.Time) {
+	_, err := db.Exec("delete from enrollments where uuid = ? and start = ? and end = ?", uuid, from, to)
+	fatalOnError(err)
+	_, err = db.Exec("insert into enrollments(uuid, start, end, organization_id) values(?, ?, ?, ?)", uuid, from, to, companyID)
+	fatalOnError(err)
 }
 
 func importAffs(db *sql.DB, users *gitHubUsers) {
