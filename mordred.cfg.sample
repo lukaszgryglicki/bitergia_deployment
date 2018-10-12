@@ -21,6 +21,8 @@ projects_file = onos.json
 
 
 [es_collection]
+arthur = False
+# arthur_url = 
 # Url to access raw indexes (Elasticsearch instance)
 url = http://localhost:9200
 # User and password to acces Elasticseach, if any
@@ -34,6 +36,8 @@ url = http://127.0.0.1:9200
 # User and password to acces Elasticseach, if any
 user =
 password =
+# refresh identities (days)
+autorefresh_interval = 1
 
 # Refresh identities and projects for all items after enrichment
 autorefresh = true
@@ -52,8 +56,8 @@ database = shdb
 affiliate = True
 # How to match to unify
 matching = [email]
-# How long to sleep before running again, for identities tasks
-sleep_for = 1800
+# How long to sleep before running again, for identities tasks (seconds)
+sleep_for = 3600
 # Don't load a specific organizations file
 load_orgs = false
 # Name of group of identities with no affiliation
@@ -62,12 +66,17 @@ unaffiliated_group = Unknown
 bots_names = [Beloved Bot]
 # How to autoprofile
 autoprofile = [ONOS:manual,git,github,gerrit]
+# Autogender
+autogender = True
+# GitHub
+identities_api_token = xxxxxx
 
 [panels]
 # Dashboard: default time frame
 kibiter_time_from= "now-1y"
 # Dashboard: default index pattern
-kibiter_default_index= "git"
+kibiter_default_index= "onos_github"
+kibiter_url = "http://devstats.cncf.io:5601"
 
 [phases]
 # Data collection (build raw indexes)
@@ -81,11 +90,15 @@ panels = true
 
 [git]
 # Names for raw and enriched indexes
-raw_index = git_grimoirelab-raw
-enriched_index = git_grimoirelab
+raw_index = onos_git_raw
+enriched_index = onos_git
 
 [github]
 api-token = xxxxxx
+raw_index = onos_github_raw
+enriched_index = onos_github
 
 [gerrit]
 user = lukaszgryglicki
+raw_index = onos_gerrit_raw
+enriched_index = onos_gerrit
