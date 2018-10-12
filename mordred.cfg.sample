@@ -69,7 +69,8 @@ bots_names = [Beloved Bot]
 # How to autoprofile
 autoprofile = [ONOS:manual,git,github,gerrit]
 # Autogender
-autogender = True
+autogender = False
+# autogender_api_token =
 # GitHub
 identities_api_token = xxxxxx
 
@@ -94,13 +95,19 @@ panels = true
 # Names for raw and enriched indexes
 raw_index = onos_git_raw
 enriched_index = onos_git
+category = commit
 
 [github]
 api-token = xxxxxx
 raw_index = onos_github_raw
 enriched_index = onos_github
+category = issue
+
 
 [gerrit]
 user = lukaszgryglicki
 raw_index = onos_gerrit_raw
 enriched_index = onos_gerrit
+category = review
+# category = question
+
