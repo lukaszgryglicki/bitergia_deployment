@@ -108,3 +108,4 @@ venv.bak/
 /opennetworkinglab_onos.git/*
 /json2hat
 *.swp
+/mordred.cfg
