@@ -83,3 +83,9 @@ panels = true
 # Names for raw and enriched indexes
 raw_index = git_grimoirelab-raw
 enriched_index = git_grimoirelab
+
+[github]
+api-token = xxxxxx
+
+[gerrit]
+user = lukaszgryglicki

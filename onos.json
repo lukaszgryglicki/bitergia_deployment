@@ -1,0 +1,13 @@
+{
+    "ONOS": {
+        "git": [
+            "https://github.com/opennetworkinglab/onos"
+        ],
+        "github": [
+            "https://github.com/opennetworkinglab/onos"
+        ],
+        "gerrit": [
+            "gerrit.onosproject.org"
+        ]
+    }
+}
