@@ -1,3 +1,3 @@
 #!/bin/bash
-curl -XDELETE http://localhost:9200/onos_github_raw
-curl -XDELETE http://localhost:9200/onos_github
+curl -XDELETE http://localhost:9200/onos2_github_raw
+curl -XDELETE http://localhost:9200/onos2_github
