@@ -21,8 +21,10 @@ projects_file = onos.json
 
 
 [es_collection]
-arthur = False
-# arthur_url = 
+# arthur
+arthur = True
+arthur_url = http://127.0.0.1:8080
+redis_url = http://127.0.0.1:6379
 # Url to access raw indexes (Elasticsearch instance)
 url = http://localhost:9200
 # User and password to acces Elasticseach, if any

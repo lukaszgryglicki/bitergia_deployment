@@ -1,0 +1,4 @@
+ElasticSearch: as devstats_team@cncfteam: cd ~/es/binl ./elasticsearch
+Kibiter: as root@devstats.cncf.io: KIBITER_PATH=/root/kibiter/ ./onos_kibiter.sh
+Redis: as root@cncfteam: service redis start
+Arthurd: as root@cncfteam: ./onos_arthurd.sh
