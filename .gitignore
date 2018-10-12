@@ -109,3 +109,4 @@ venv.bak/
 /json2hat
 *.swp
 /mordred.cfg
+/mordred_k8s.cfg

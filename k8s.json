@@ -1,0 +1,10 @@
+{
+    "ONOS": {
+        "git": [
+            "https://github.com/kubernetes/kubernetes"
+        ],
+        "github": [
+            "https://github.com/kubernetes/kubernetes"
+        ]
+    }
+}

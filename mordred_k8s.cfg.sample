@@ -3,7 +3,7 @@
 
 [general]
 # Name of the project to analyze (will appear in dashboard)
-short_name = ONOS
+short_name = Kubernetes
 # Update incrementally, forever
 update = true
 # Don't start a new update earlier than (since last update, seconds)
@@ -12,12 +12,12 @@ min_update_delay = 3600
 debug = true
 
 # Directory for logs
-logs_dir = onos_logs
+logs_dir = k8s_logs
 
 
 [projects]
 # File with repositories to analyze
-projects_file = onos.json
+projects_file = k8s.json
 
 
 [es_collection]
@@ -65,9 +65,9 @@ load_orgs = false
 # Name of group of identities with no affiliation
 unaffiliated_group = Unknown
 # Ids known to be bots
-bots_names = [Beloved Bot]
+bots_names = ['greenkeeper[bot]', 'web-flow', 'k8s-merge-robot', 'codecov[bot]', 'stale[bot]', 'googlebot', 'coveralls', 'rktbot', 'Docker Library Bot', 'k8s-merge-robot', 'Kubernetes Submit Queue', 'tilosp-bot', 'Travis Deploy Bot', 'VMware CLA Bot', 'Kubernetes staging repo publishing bot', 'Kubernetes Publisher', 'k8s-ci-robot', 'devstats-sync', 'coreosbot', 'web-flow', 'openstack-gerrit', 'prometheus-roobot', 'cncf-bot']
 # How to autoprofile
-autoprofile = [git,github,gerrit]
+autoprofile = [git,github]
 # Autogender
 autogender = False
 # autogender_api_token =
@@ -76,9 +76,9 @@ identities_api_token = xxxxxx
 
 [panels]
 # Dashboard: default time frame
-kibiter_time_from= "now-1y"
+kibiter_time_from= "now-3y"
 # Dashboard: default index pattern
-kibiter_default_index= "onos_github"
+kibiter_default_index= "k8s_git"
 kibiter_url = "http://devstats.cncf.io:5601"
 
 [phases]
@@ -93,21 +93,13 @@ panels = true
 
 [git]
 # Names for raw and enriched indexes
-raw_index = onos_git_raw
-enriched_index = onos_git
+raw_index = k8s_git_raw
+enriched_index = k8s_git
 category = commit
 
 [github]
 api-token = xxxxxx
-raw_index = onos_github_raw
-enriched_index = onos_github
+sleep-for-rate = True
+raw_index = k8s_github_raw
+enriched_index = k8s_github
 category = issue
-
-
-[gerrit]
-user = lukaszgryglicki
-raw_index = onos_gerrit_raw
-enriched_index = onos_gerrit
-category = review
-# category = question
-
