@@ -4,4 +4,4 @@ then
   echo "$0: you need to specify shdb password via: PASS=... $*"
   exit 1
 fi
-sortinghat -d shdb -u shuser -p "${PASS}" autogender
+sortinghat -d shdb -u shuser -p "${PASS}" autogender --api-token=`cat /etc/genderize.io/key`
