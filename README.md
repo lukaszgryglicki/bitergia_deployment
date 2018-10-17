@@ -55,7 +55,7 @@ This only runs backends and stores results in `*.log` files.
 
 # Run ELK tasks
 
-This saves data into ES indices and into SortingHat database. All details about URLS, usernames and possible API tokens are the same as por Perceval jobs:
+This saves data into ES indices and into SortingHat database. All details about URLs, usernames and possible API tokens are the same as por Perceval jobs:
 
 - Git: `PASS=XXX ./elk_git.sh`.
 - GitHub: `` API_KEY=`cat /etc/github/oauth` PASS=XXX ./elk_github.sh ``.
