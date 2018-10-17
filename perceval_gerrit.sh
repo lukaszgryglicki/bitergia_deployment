@@ -1,7 +1,7 @@
 #!/bin/bash
-if [ -z "${GUSER}" ]
+if [ -z "${GERRIT_USER}" ]
 then
-  echo "$0: you need to set GUSER=... to be able to use Gerrit (and that user must have SSH access configured)"
+  echo "$0: you need to set GERRIT_USER=... to be able to use Gerrit (and that user must have SSH access configured)"
   exit 1
 fi
-perceval gerrit --category review --user "${GUSER}" gerrit.onosproject.org > perceval_opennetworkinglab_onos.gerrit.log
+perceval gerrit --category review --user "${GERRIT_USER}" gerrit.onosproject.org > perceval_opennetworkinglab_onos.gerrit.log
