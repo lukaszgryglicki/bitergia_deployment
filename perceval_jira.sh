@@ -14,4 +14,5 @@ fi
 # --project 'M-CORD'
 # --project 'ONOS Ambassadors'
 # perceval jira 'http://jira.onosproject.org' --category issue --project 'ONOS' -u "${JIRA_USER}" -p "${JIRA_PWD}" --verify False  > jira.onosproject.org.jira.log
+# with no --project specified it fetches all
 perceval jira 'http://jira.onosproject.org' --category issue -u "${JIRA_USER}" -p "${JIRA_PWD}" --verify False  > jira.onosproject.org.jira.log
