@@ -64,3 +64,9 @@ This saves data into ES indices and into SOrtingHat database:
 - Slack: `` API_TOKEN=`cat /etc/slack/onos-token` PASS=XXX ./elk_slack.sh ``.
 - Jira: `JIRA_USER=username JIRA_PWD=XXX PASS=XXX ./perceval_jira.sh`.
 - Confluence: `PASS=XXX ./elk_confluence.sh`.
+
+# Enchance SortingHt DB
+
+Once you have all the data, enchance SortingHat DB.
+
+- `` GENDERIZE_TOKEN=`cat /etc/genderize.io/key` PASS=XXX sortinghat_workflow.sh ``
