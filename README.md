@@ -46,3 +46,4 @@
 - For testing Gerrit data source (`GERRIT_USER` is a Gerrit username who has SSH access configured, [public keys imported](https://www.tutorialspoint.com/gerrit/gerrit_generate_new_ssh_key.htm) etc.): `GERRIT_USER=username ./perceval_gerrit.sh`.
 - For testing Mail archives data source see `TODO.md`.
 - For testing Slack data source (`API_TOKEN` is a [Legacy Slack token](https://api.slack.com/custom-integrations/legacy-tokens)): `` API_TOKEN=`cat /etc/slack/onos-token` ./perceval_slack.sh ``.
+- For testing Jira data source: `JIRA_USER=username JIRA_PWD=XXX ./perceval_jira.sh`.
