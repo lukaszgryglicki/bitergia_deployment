@@ -66,7 +66,7 @@ This saves data into ES indices and into SortingHat database. All details about 
 - Confluence: `PASS=XXX ./elk_confluence.sh`.
 - Use any of `get_es_`... script to get informations about indexes/types created.
 
-# Enchance SortingHt DB
+# Enchance SortingHat DB
 
 Once you have all the data, enchance SortingHat DB.
 
