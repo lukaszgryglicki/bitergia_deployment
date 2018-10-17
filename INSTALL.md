@@ -1,0 +1,35 @@
+# Installing stack
+
+- `apt install python3-pip`.
+- `pip3 install grimoirelab`.
+- `grimoirelab -v`.
+- `wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -`.
+- `sudo apt-get install apt-transport-https`.
+- `echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-6.x.list`.
+- `sudo apt-get update && sudo apt-get install elasticsearch`.
+- `service elasticsearch start`.
+- `service elasticsearch status`.
+- `curl -X GET "localhost:9200/"`.
+- `cd /some/path`.
+- `wget https://github.com/chaoss/grimoirelab-kibiter/releases/download/kibiter-v6.1.0-5/kibiter-6.1.0-5-linux-x86_64.tar.gz`.
+- `tar zxf kibiter-6.1.0-5-linux-x86_64.tar.gz`.
+- `mv kibiter-6.1.0-5-linux-x86_64 kibiter`.
+- `rm kibiter-6.1.0-5-linux-x86_64.tar.gz`.
+- `/some/path/kibiter/bin/kibana &`.
+- `sudo apt-get install mariadb-server mariadb-client`.
+- `sudo apt-get install apparmor-utils`.
+- `sudo aa-disable /usr/sbin/mysqld`.
+- `sudo aa-remove-unknown`.
+- `sudo service apparmor reload`.
+- `sudo service mariadb start`
+- `sudo service mariadb status`
+- `sudo mysql_secure_installation`.
+- `mariadb -uroot -pXXX`.
+- `sudo apt install redis-server`.
+- `sudo service redis status`.
+- `redis-cli`. Try `ping`, `quit`.
+- `cd $GOPATH/src/`.
+- `git clone https://github.com/lukaszgryglicki/bitergia_deployment.git`.
+- `cd bitergia_deployment`.
+- `go get -u github.com/go-sql-driver/mysql`.
+- `make`.
