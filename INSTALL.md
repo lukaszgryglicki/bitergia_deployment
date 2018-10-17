@@ -42,5 +42,5 @@
 
 # Run backends manually
 - For testing git data source: `./perceval_git.sh`.
-- For testing GitHub data source (`API_KEY` is a GitHub OAuth key): `API_KEY=`cat /etc/github/oauth` ./perceval_github.sh`.
+- For testing GitHub data source (`API_KEY` is a GitHub OAuth key): `API_KEY=\`cat /etc/github/oauth\` ./perceval_github.sh`.
 - For testing Gerrit data source (`GERRIT_USER` is a Gerrit username who has SSH access configured, [public keys imported](https://www.tutorialspoint.com/gerrit/gerrit_generate_new_ssh_key.htm) etc.): `GERRIT_USER=username ./perceval_gerrit.sh`.
