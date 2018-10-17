@@ -47,3 +47,4 @@
 - For testing Mail archives data source see `TODO.md`.
 - For testing Slack data source (`API_TOKEN` is a [Legacy Slack token](https://api.slack.com/custom-integrations/legacy-tokens)): `` API_TOKEN=`cat /etc/slack/onos-token` ./perceval_slack.sh ``.
 - For testing Jira data source: `JIRA_USER=username JIRA_PWD=XXX ./perceval_jira.sh`.
+- For testing Confluence data source: `./perceval_confluence.sh`.
