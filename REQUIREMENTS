@@ -1,4 +1,6 @@
-ElasticSearch: as devstats_team@cncfteam: cd ~/es/binl ./elasticsearch
+As root on ARM64: sysctl vm.max_map_count=262144
+
+ElasticSearch: as devstats_team@cncfteam: cd ~/es/bin ; ./elasticsearch
 Kibiter: as root@devstats.cncf.io: KIBITER_PATH=/root/kibiter/ ./onos_kibiter.sh
 Redis: as root@cncfteam: service redis start
-Arthurd: as root@cncfteam: ./onos_arthurd.sh
+Arthurd: as root@cncfteam: cd /data/dev/src/bitergia_deployment/; ./onos_arthurd.sh
