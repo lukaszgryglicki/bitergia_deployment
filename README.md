@@ -45,8 +45,8 @@
 
 This only runs backends and stores results in `*.log` files.
 
-- For testing git data source (the script contains full list of repos to process): `./perceval_git.sh`.
-- For testing GitHub data source, script contains full list of repos to process (`API_KEY` is a i[GitHub OAuth key](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)): `` API_KEY=`cat /etc/github/oauth` ./perceval_github.sh ``.
+- For testing git data source, the script contains full list of repos to process: `./perceval_git.sh`.
+- For testing GitHub data source, script contains full list of repos to process (`API_KEY` is a [GitHub OAuth key](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)): `` API_KEY=`cat /etc/github/oauth` ./perceval_github.sh ``.
 - For testing Gerrit data source, script contains Gerrit URL (`GERRIT_USER` is a Gerrit username who has [SSH access configured and public keys imported](https://www.tutorialspoint.com/gerrit/gerrit_generate_new_ssh_key.htm) etc.): `GERRIT_USER=username ./perceval_gerrit.sh`.
 - For testing Mail archives data source see `TODO.md`.
 - For testing Slack data source, script contains Slack channel IDs (`API_TOKEN` is a [Legacy Slack token](https://api.slack.com/custom-integrations/legacy-tokens), you need to have access to a project specific Slack workspace): `` API_TOKEN=`cat /etc/slack/onos-token` ./perceval_slack.sh ``.
