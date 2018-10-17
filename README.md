@@ -45,17 +45,17 @@
 
 This only runs backends and stores results in `*.log` files.
 
-- For testing git data source: `./perceval_git.sh`.
-- For testing GitHub data source (`API_KEY` is a GitHub OAuth key): `` API_KEY=`cat /etc/github/oauth` ./perceval_github.sh ``.
-- For testing Gerrit data source (`GERRIT_USER` is a Gerrit username who has SSH access configured, [public keys imported](https://www.tutorialspoint.com/gerrit/gerrit_generate_new_ssh_key.htm) etc.): `GERRIT_USER=username ./perceval_gerrit.sh`.
+- For testing git data source (the script contains full list of repos to process): `./perceval_git.sh`.
+- For testing GitHub data source, script contains full list of repos to process (`API_KEY` is a i[GitHub OAuth key](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)): `` API_KEY=`cat /etc/github/oauth` ./perceval_github.sh ``.
+- For testing Gerrit data source, script contains Gerrit URL (`GERRIT_USER` is a Gerrit username who has [SSH access configured and public keys imported](https://www.tutorialspoint.com/gerrit/gerrit_generate_new_ssh_key.htm) etc.): `GERRIT_USER=username ./perceval_gerrit.sh`.
 - For testing Mail archives data source see `TODO.md`.
-- For testing Slack data source (`API_TOKEN` is a [Legacy Slack token](https://api.slack.com/custom-integrations/legacy-tokens)): `` API_TOKEN=`cat /etc/slack/onos-token` ./perceval_slack.sh ``.
-- For testing Jira data source: `JIRA_USER=username JIRA_PWD=XXX ./perceval_jira.sh`.
-- For testing Confluence data source: `./perceval_confluence.sh`.
+- For testing Slack data source, script contains Slack channel IDs (`API_TOKEN` is a [Legacy Slack token](https://api.slack.com/custom-integrations/legacy-tokens), you need to have access to a project specific Slack workspace): `` API_TOKEN=`cat /etc/slack/onos-token` ./perceval_slack.sh ``.
+- For testing Jira data source, script contains Jira URL (JIRA_USER and JIRA_PWD are your Jira credentials): `JIRA_USER=username JIRA_PWD=XXX ./perceval_jira.sh`.
+- For testing Confluence data source, Script contains confluence URL: `./perceval_confluence.sh`.
 
 # Run ELK tasks
 
-This saves data into ES indices and into SOrtingHat database:
+This saves data into ES indices and into SOrtingHat database. All details about URLS, usernames and possible API tokens are the same as por Perceval jobs:
 
 - Git: `PASS=XXX ./elk_git.sh`.
 - GitHub: `` API_KEY=`cat /etc/github/oauth` PASS=XXX ./elk_github.sh ``.
