@@ -60,4 +60,6 @@ This saves data into ES indices and into SOrtingHat database:
 - Git: `PASS=XXX ./elk_git.sh`.
 - GitHub: `` API_KEY=`cat /etc/github/oauth` PASS=XXX ./elk_github.sh ``.
 - Gerrit: `GERRIT_USER=username PASS=XXX ./elk_gerrit.sh`.
+- Mail: see `TODO.md`.
 - Slack: `` API_TOKEN=`cat /etc/slack/onos-token` PASS=XXX ./elk_slack.sh ``.
+- Jira: `JIRA_USER=username JIRA_PWD=XXX PASS=XXX ./perceval_jira.sh`.
