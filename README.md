@@ -37,6 +37,7 @@
 - `make`.
 - `PASS=XXX ./create_shuser.sh`.
 - `PASS=XXX ./init_sortinghat.sh`.
+- `mkdir arthurd_logs; ./arthurd.sh`.
 
 # Tools
 
