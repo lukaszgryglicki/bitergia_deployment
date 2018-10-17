@@ -10,7 +10,7 @@ perceval git https://gerrit.onosproject.org/onos-vm --category commit --git-path
 perceval git https://gerrit.onosproject.org/onos-app-samples --category commit --git-path opennetworkinglab_onos-app-samples.git >> perceval_onos.git.log || exit 1
 perceval git https://gerrit.onosproject.org/vm-build --category commit --git-path opennetworkinglab_vm-build.git >> perceval_onos.git.log || exit 1
 perceval git https://gerrit.onosproject.org/routing --category commit --git-path opennetworkinglab_routing.git >> perceval_onos.git.log || exit 1
-perceval git https://gerrit.onosproject.org/olt-oftest --category commit --git-path opennetworkinglab_old-offset.git >> perceval_onos.git.log || exit 1
+perceval git https://gerrit.onosproject.org/olt-oftest --category commit --git-path opennetworkinglab_olt-offset.git >> perceval_onos.git.log || exit 1
 perceval git https://gerrit.onosproject.org/onos-nemo --category commit --git-path opennetworkinglab_onos-nemo.git >> perceval_onos.git.log || exit 1
 perceval git https://gerrit.onosproject.org/spring-open-cli --category commit --git-path opennetworkinglab_spring-open-cli.git >> perceval_onos.git.log || exit 1
 perceval git https://gerrit.onosproject.org/onos-gerrit-base --category commit --git-path opennetworkinglab_onos-gerrit-base.git >> perceval_onos.git.log || exit 1
