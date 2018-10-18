@@ -93,6 +93,7 @@ Aliases were creaed by `VERSION='_v1' ./es/alias_all.sh`, command `_v1` is a rea
 - You cna drop `_v2` version via: `VERSION='_v2' es/drop_all.sh`.
 
 This is all useful when you want to generate data from ELK first and then switch to v2 to see how SirMordred worked, to do so:
+
 - `VERSION='_v1' ./es/alias_all.sh`.
 - Generate data using ELK.
 - See that data in Kibiter.

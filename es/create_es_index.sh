@@ -5,4 +5,4 @@ then
   exit 1
 fi
 curl -XPUT "localhost:9200/${1}"
-curl -XPOST -H 'Content-Type: application/json' "localhost:9200/${1}/touch?refresh=wait_for" -d '{}'
+curl -XPOST -H 'Content-Type: application/json' "localhost:9200/${1}/items?refresh=wait_for" -d '{}'
