@@ -1,13 +1,47 @@
 {
     "ONOS": {
         "git": [
-            "https://github.com/opennetworkinglab/onos"
+          "https://gerrit.onosproject.org/onos",
+          "https://gerrit.onosproject.org/onos-felix",
+          "https://gerrit.onosproject.org/spring-open",
+          "https://gerrit.onosproject.org/OnosSystemTest",
+          "https://gerrit.onosproject.org/onos-loxi",
+          "https://gerrit.onosproject.org/onos-yang-tools",
+          "https://gerrit.onosproject.org/fabric-control",
+          "https://gerrit.onosproject.org/onos-vm",
+          "https://gerrit.onosproject.org/onos-app-samples",
+          "https://gerrit.onosproject.org/vm-build",
+          "https://gerrit.onosproject.org/routing",
+          "https://gerrit.onosproject.org/olt-oftest",
+          "https://gerrit.onosproject.org/onos-nemo",
+          "https://gerrit.onosproject.org/spring-open-cli",
+          "https://gerrit.onosproject.org/onos-gerrit-base",
+          "https://gerrit.onosproject.org/manifest",
+          "https://gerrit.onosproject.org/OnosSystemTestJenkins",
+          "https://gerrit.onosproject.org/cord-openwrt"
         ],
         "github": [
-            "https://github.com/opennetworkinglab/onos"
+          "opennetworkinglab onos",
+          "opennetworkinglab spring-open",
+          "opennetworkinglab OnosSystemTest",
+          "opennetworkinglab onos-loxi",
+          "opennetworkinglab onos-yang-tools",
+          "opennetworkinglab onos-app-samples",
+          "opennetworkinglab routing",
+          "opennetworkinglab spring-open-cli"
         ],
         "gerrit": [
-            "gerrit.onosproject.org"
+          "gerrit.onosproject.org"
+        ],
+        "slack": [
+          "C095YQBM2",
+          "C095YQBLL"
+        ],
+        "jira": [
+          "http://jira.onosproject.org"
+        ],
+        "confluence": [
+          "http://wiki.onap.org"
         ]
     }
 }
