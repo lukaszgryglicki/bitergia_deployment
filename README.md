@@ -12,6 +12,7 @@
 - `service elasticsearch start`.
 - `service elasticsearch status`.
 - `curl -X GET "localhost:9200/"`.
+- `npm install elasticdump -g`
 - `cd /some/path`.
 - `wget https://github.com/chaoss/grimoirelab-kibiter/releases/download/kibiter-v6.1.0-5/kibiter-6.1.0-5-linux-x86_64.tar.gz`.
 - `tar zxf kibiter-6.1.0-5-linux-x86_64.tar.gz`.

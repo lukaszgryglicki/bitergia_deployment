@@ -15,7 +15,7 @@ do
   echo "\nCreating index ${index} if not exists"
   ./es/create_es_index_if_not_exists.sh "${index}" || exit 3
   echo "\nReindexing index ${index} --> index ${indexv}"
-  ./es/reindex.sh "${index}" "${indexv}" || exit 4
+  ./es/es_reindex.sh "${index}" "${indexv}" || exit 4
   echo "\nDeleting index ${index}"
   ./es/delete_es_index.sh "${index}" || exit 5
   echo "\nAliasing index ${indexv} --> alias ${index}"
