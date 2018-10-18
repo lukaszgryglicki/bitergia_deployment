@@ -55,6 +55,10 @@ This only runs backends and stores results in `*.log` files.
 
 # Run ELK tasks
 
+First, create aliases for indexes to use:
+
+- `es/alias_all.sh`.
+
 This saves data into ES indices and into SortingHat database. All details about URLs, usernames and possible API tokens are the same as por Perceval jobs:
 
 - Git: `PASS=XXX ./elk/elk_git.sh`.
