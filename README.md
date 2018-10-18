@@ -58,7 +58,7 @@ This only runs backends and stores results in `*.log` files.
 
 First, create aliases for indexes to use:
 
-- `es/alias_all.sh`.
+- `VERSION='_v1' ./es/alias_all.sh`.
 
 This saves data into ES indices and into SortingHat database. All details about URLs, usernames and possible API tokens are the same as por Perceval jobs:
 
@@ -81,3 +81,22 @@ Once you have all the data, enchance SortingHat DB.
 # Running Kibiter
 
 - `KIBITER_PATH=/some/path/kibiter/bin/kibana ./kibiter.sh &`.
+
+# Manage ElacticSearch aliases
+
+By default we use aliases for all indexes, for example `git`, `github` etc. They point to `git_v1`, `github_v1` by default.
+Aliases were creaed by `VERSION='_v1' ./es/alias_all.sh`, command `_v1` is a real index suffix.
+
+- You can switch to `_v2` indexes via: `FROM_VERSION='_v1' TO_VERSION='_v2' ./es/switch_all.sh`, so now `git` will point to `git_v2`.
+- Then you can switch back to `_v1` via: `FROM_VERSION='_v2' TO_VERSION='_v1' ./es/switch_all.sh`.
+- If you generated all data without index aliases, you can `reindex` data using `elasticdump` to point to `_v1` for example: `REINDEX=1 VERSION='_v1' ./es/alias_all.sh`. It will keep all data nad metadata.
+- You cna drop `_v2` version via: `VERSION='_v2' es/drop_all.sh`.
+
+This is all useful when you want to generate data from ELK first and then switch to v2 to see how SirMordred worked, to do so:
+- `VERSION='_v1' ./es/alias_all.sh`.
+- Generate data using ELK.
+- See that data in Kibiter.
+- `FROM_VERSION='_v1' TO_VERSION='_v2' ./es/switch_all.sh`.
+- Generate data using SirMordred/
+- See that data in Kibiter.
+- Then possibly switch between v1 and v2 as you like.
