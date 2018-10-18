@@ -20,8 +20,18 @@
           "https://gerrit.onosproject.org/OnosSystemTestJenkins",
           "https://gerrit.onosproject.org/cord-openwrt"
         ],
-        "github": [
-          "https://github.com/httopennetworkinglab/onos",
+        "github:issue": [
+          "https://github.com/opennetworkinglab/onos",
+          "https://github.com/opennetworkinglab/spring-open",
+          "https://github.com/opennetworkinglab/OnosSystemTest",
+          "https://github.com/opennetworkinglab/onos-loxi",
+          "https://github.com/opennetworkinglab/onos-yang-tools",
+          "https://github.com/opennetworkinglab/onos-app-samples",
+          "https://github.com/opennetworkinglab/routing",
+          "https://github.com/opennetworkinglab/spring-open-cli"
+        ],
+        "github:pull_request": [
+          "https://github.com/opennetworkinglab/onos",
           "https://github.com/opennetworkinglab/spring-open",
           "https://github.com/opennetworkinglab/OnosSystemTest",
           "https://github.com/opennetworkinglab/onos-loxi",
