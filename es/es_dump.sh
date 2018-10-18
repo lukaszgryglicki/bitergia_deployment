@@ -1,6 +1,6 @@
 #!/bin/bash
-# NODATA=1 (skip copying data)
-# NOMETA=1 (skip copying metadata)
+# NODATA=1 (skip dumping data)
+# NOMETA=1 (skip dumping metadata)
 if [ -z "$1" ]
 then
   echo "$0: please provide from index name as a first argument"
