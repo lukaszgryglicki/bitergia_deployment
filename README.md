@@ -86,7 +86,7 @@ Once you have all the data, enchance SortingHat DB.
 
 It uses `mordred.cfg` and `onos.json` configuration files.
 
-- Use: `sirmordred -c mordred.cfg`.
+- Use: `mordred.sh`.
 
 # Manage ElacticSearch aliases
 

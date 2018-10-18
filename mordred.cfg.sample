@@ -21,17 +21,17 @@ projects_file = onos.json
 [es_collection]
 # arthur
 arthur = True
-arthur_url = 'http://127.0.0.1:8080'
-redis_url = 'http://127.0.0.1:6379'
+arthur_url = http://127.0.0.1:8080
+redis_url = http://127.0.0.1:6379
 # Url to access raw indexes (Elasticsearch instance)
-url = 'http://localhost:9200'
+url = http://localhost:9200
 # User and password to acces Elasticseach, if any
 user =
 password =
 
 [es_enrichment]
 # Url to access enriched indexes (Elasticsearch instance)
-url = 'http://127.0.0.1:9200'
+url = http://127.0.0.1:9200
 # User and password to acces Elasticseach, if any
 user =
 password =
@@ -59,7 +59,7 @@ sleep_for = 3600
 # Don't load a specific organizations file
 load_orgs = false
 # Name of group of identities with no affiliation
-unaffiliated_group = '(Unknown)'
+unaffiliated_group = "(Unknown)"
 # Ids known to be bots
 bots_names = [Beloved Bot]
 # How to autoprofile
@@ -130,4 +130,4 @@ verify = False
 [confluence]
 raw_index = confluence_raw
 enriched_index = confluence
-category = 'historical content'
+category = "historical content"

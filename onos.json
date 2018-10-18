@@ -21,14 +21,14 @@
           "https://gerrit.onosproject.org/cord-openwrt"
         ],
         "github": [
-          "opennetworkinglab onos",
-          "opennetworkinglab spring-open",
-          "opennetworkinglab OnosSystemTest",
-          "opennetworkinglab onos-loxi",
-          "opennetworkinglab onos-yang-tools",
-          "opennetworkinglab onos-app-samples",
-          "opennetworkinglab routing",
-          "opennetworkinglab spring-open-cli"
+          "https://github.com/httopennetworkinglab/onos",
+          "https://github.com/opennetworkinglab/spring-open",
+          "https://github.com/opennetworkinglab/OnosSystemTest",
+          "https://github.com/opennetworkinglab/onos-loxi",
+          "https://github.com/opennetworkinglab/onos-yang-tools",
+          "https://github.com/opennetworkinglab/onos-app-samples",
+          "https://github.com/opennetworkinglab/routing",
+          "https://github.com/opennetworkinglab/spring-open-cli"
         ],
         "gerrit": [
           "gerrit.onosproject.org"

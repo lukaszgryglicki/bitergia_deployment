@@ -1,0 +1,7 @@
+{
+    "ONOS": {
+        "git": [
+          "https://gerrit.onosproject.org/spring-open"
+        ]
+    }
+}
