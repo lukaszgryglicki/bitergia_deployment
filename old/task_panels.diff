@@ -1,0 +1,28 @@
+--- task_panels.py	2018-10-18 13:31:52.537389399 +0000
++++ task_panels.py.mod	2018-10-18 14:04:11.263870571 +0000
+@@ -474,7 +474,25 @@
+             res = self.grimoire_con.post(aliases_url, data=action, headers=ES6_HEADER)
+             res.raise_for_status()
+ 
++    def __get_alias_target(self, es_url, alias):
++        index = ''
++        url = urljoin(es_url + "/", "_alias/" + alias)
++        res = self.grimoire_con.get(url)
++        if res.status_code == 200:
++            lst = list(res.json().keys())
++            if len(lst) > 0:
++                index = lst[0]
++        return index
++
+     def __create_alias(self, es_url, es_index, alias):
++        if self.__exists_alias(es_url, es_index):
++            # The original index is already an alias, point to its underlying index then
++            index = self.__get_alias_target(es_url, es_index)
++            if index == '':
++                logger.debug("%s is an alias but cannot find index it points to", es_index)
++                return
++            logger.debug("%s is already an alias to %s, using alias target as new alias source", es_index, index)
++            es_index = index
+         if self.__exists_alias(es_url, alias):
+             # The alias already exists
+             return
