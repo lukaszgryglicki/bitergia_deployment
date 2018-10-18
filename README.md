@@ -75,7 +75,7 @@ This saves data into ES indices and into SortingHat database. All details about 
 
 Once you have all the data, enchance SortingHat DB.
 
-- Run SortingHat automatic enrichments: `` GENDERIZE_TOKEN=`cat /etc/genderize.io/key` PASS=XXX ./sortinghat_workflow.sh ``
+- Run SortingHat automatic enrichments: `` GENDERIZE_TOKEN=`cat /etc/genderize.io/key` PASS=XXX ./sortinghat/sortinghat_workflow.sh ``
 - Import `github_users.json` from `cncf/devstats`: `PASS=XXX ./json2hat`.
 
 # Running Kibiter
