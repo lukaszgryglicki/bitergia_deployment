@@ -86,6 +86,7 @@ Once you have all the data, enchance SortingHat DB.
 
 It uses `mordred.cfg` and `onos.json` configuration files.
 
+- SirMordred doesn't support aliases to aliases yet, apply this patch: `patch /usr/local/lib/python3.6/dist-packages/sirmordred/task_panels.py patches/task_panels.diff`.
 - Use: `mordred.sh`.
 
 # Manage ElacticSearch aliases
