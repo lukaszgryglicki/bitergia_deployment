@@ -1,6 +1,6 @@
 # Simple SirMordred config file
-#
 
+# FIXME: REMEMBER to search and replace sensitive data: /\ckey\|\cuser\|\ctoken\|\cpassword
 [general]
 # Name of the project to analyze (will appear in dashboard)
 short_name = ONOS
@@ -14,27 +14,24 @@ debug = true
 # Directory for logs
 logs_dir = onos_logs
 
-
 [projects]
 # File with repositories to analyze
 projects_file = onos.json
 
-
 [es_collection]
 # arthur
 arthur = True
-arthur_url = http://127.0.0.1:8080
-redis_url = http://127.0.0.1:6379
+arthur_url = 'http://127.0.0.1:8080'
+redis_url = 'http://127.0.0.1:6379'
 # Url to access raw indexes (Elasticsearch instance)
-url = http://localhost:9200
+url = 'http://localhost:9200'
 # User and password to acces Elasticseach, if any
 user =
 password =
 
-
 [es_enrichment]
 # Url to access enriched indexes (Elasticsearch instance)
-url = http://127.0.0.1:9200
+url = 'http://127.0.0.1:9200'
 # User and password to acces Elasticseach, if any
 user =
 password =
@@ -44,13 +41,12 @@ autorefresh_interval = 1
 # Refresh identities and projects for all items after enrichment
 autorefresh = true
 
-
 [sortinghat]
 # Host to access MariaDB / MySQL instance
 host = localhost
 # User and password to access MariaDB / MySQL instance
 user = shuser
-password = xxxxxx
+password = xxx
 # Name of MariaDB / MySQL database
 database = shdb
 
@@ -63,23 +59,23 @@ sleep_for = 3600
 # Don't load a specific organizations file
 load_orgs = false
 # Name of group of identities with no affiliation
-unaffiliated_group = Unknown
+unaffiliated_group = '(Unknown)'
 # Ids known to be bots
 bots_names = [Beloved Bot]
 # How to autoprofile
-autoprofile = [git,github,gerrit]
+autoprofile = [git,github,gerrit,slack,jira,confluence]
 # Autogender
-autogender = False
-# autogender_api_token =
+autogender = True
+autogender_api_token = xxx
 # GitHub
-identities_api_token = xxxxxx
+identities_api_token = xxx
 
 [panels]
 # Dashboard: default time frame
 kibiter_time_from= "now-1y"
 # Dashboard: default index pattern
-kibiter_default_index= "onos_github"
-kibiter_url = "http://devstats.cncf.io:5601"
+kibiter_default_index= "git"
+kibiter_url = "http://127.0.0.1:5601"
 
 [phases]
 # Data collection (build raw indexes)
@@ -93,21 +89,45 @@ panels = true
 
 [git]
 # Names for raw and enriched indexes
-raw_index = onos_git_raw
-enriched_index = onos_git
+raw_index = git_raw
+enriched_index = git
 category = commit
 
-[github]
-api-token = xxxxxx
-raw_index = onos_github_raw
-enriched_index = onos_github
+[github:issue]
+api-token = xxx
+raw_index = github_raw
+enriched_index = github
+sleep-for-rate = true
 category = issue
 
+[github:pull_request]
+api-token = xxx
+raw_index = github_raw
+enriched_index = github
+sleep-for-rate = true
+category = pull_request
 
 [gerrit]
-user = lukaszgryglicki
-raw_index = onos_gerrit_raw
-enriched_index = onos_gerrit
+user = xxx
+raw_index = gerrit_raw
+enriched_index = gerrit
 category = review
-# category = question
 
+[slack]
+raw_index = slack_raw
+enriched_index = slack
+category = message
+api-token = xxx
+
+[jira]
+raw_index = jira_raw
+enriched_index = jira
+category = issue
+backend-user = xxx
+backend-password = xxx
+verify = False
+
+[confluence]
+raw_index = confluence_raw
+enriched_index = confluence
+category = 'historical content'
