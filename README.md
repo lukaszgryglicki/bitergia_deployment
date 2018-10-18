@@ -97,9 +97,6 @@ Aliases were creaed by `VERSION='_v1' ./es/alias_all.sh`, command `_v1` is a rea
 - Then you can switch back to `_v1` via: `FROM_VERSION='_v2' TO_VERSION='_v1' ./es/switch_all.sh`.
 - If you generated all data without index aliases, you can `reindex` data using `elasticdump` to point to `_v1` for example: `REINDEX=1 VERSION='_v1' ./es/alias_all.sh`. It will keep all data nad metadata.
 - You can drop `_v2` version via: `VERSION='_v2' es/drop_all.sh`.
-- All commands: `es/switch_all.sh`, `es/alias_all.sh`, `es/switch_drop.sh` use `indexes.txt` file. It contains list of indexes to process. You can specify indexes list manyally via prepending command with `ONLY="index1 index2 ... indexN"`.
-- You can dump any index to a bunch of JSON files via: `./es/es_dump.sh indexname filename`. It will create few files `filename.type.json`, where `type` is: `alias, analyzer, data, mapping, settings`. `data` is the actual index data, remaining files are metadata.
-- You can restore index from a bunch of JSON files created by the above command via: `./es/es_restore.sh indexname filename`, it will expect to find 5 JSON files `filename.type.json`, where `type` is: `alias, analyzer, data, mapping, settings`.
 
 This is all useful when you want to generate data from ELK first and then switch to v2 to see how SirMordred worked, to do so:
 
@@ -110,3 +107,9 @@ This is all useful when you want to generate data from ELK first and then switch
 - Generate data using SirMordred/
 - See that data in Kibiter.
 - Then possibly switch between v1 and v2 as you like.
+
+Mor einfo regarding index aliases and index dump/restore process:
+
+- All commands: `es/switch_all.sh`, `es/alias_all.sh`, `es/switch_drop.sh` use `indexes.txt` file. It contains list of indexes to process. You can specify indexes list manyally via prepending command with `ONLY="index1 index2 ... indexN"`.
+- You can dump any index to a bunch of JSON files via: `./es/es_dump.sh indexname filename`. It will create few files `filename.type.json`, where `type` is: `alias, analyzer, data, mapping, settings`. `data` is the actual index data, remaining files are metadata.
+- You can restore index from a bunch of JSON files created by the above command via: `./es/es_restore.sh indexname filename`, it will expect to find 5 JSON files `filename.type.json`, where `type` is: `alias, analyzer, data, mapping, settings`.

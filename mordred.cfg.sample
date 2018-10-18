@@ -65,8 +65,8 @@ bots_names = [Beloved Bot]
 # How to autoprofile
 autoprofile = [git,github,gerrit,slack,jira,confluence]
 # Autogender
-autogender = True
-autogender_api_token = xxx
+# autogender = True
+# autogender_api_token = xxx
 # GitHub
 identities_api_token = xxx
 
