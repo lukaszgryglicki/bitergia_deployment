@@ -20,7 +20,7 @@ projects_file = onos.json
 
 [es_collection]
 # arthur
-arthur = True
+arthur = true
 arthur_url = http://127.0.0.1:8080
 redis_url = http://127.0.0.1:6379
 # Url to access raw indexes (Elasticsearch instance)
@@ -51,7 +51,7 @@ password = xxx
 database = shdb
 
 # Run affilation
-affiliate = True
+affiliate = true
 # How to match to unify
 matching = [email]
 # How long to sleep before running again, for identities tasks (seconds)
@@ -65,7 +65,7 @@ bots_names = [Beloved Bot]
 # How to autoprofile
 autoprofile = [git,github,gerrit,slack,jira,confluence]
 # Autogender
-# autogender = True
+# autogender = true
 # autogender_api_token = xxx
 # GitHub
 identities_api_token = xxx
@@ -125,7 +125,7 @@ enriched_index = jira
 category = issue
 backend-user = xxx
 backend-password = xxx
-verify = False
+verify = false
 
 [confluence]
 raw_index = confluence_raw
