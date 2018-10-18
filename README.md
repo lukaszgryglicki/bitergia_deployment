@@ -36,8 +36,8 @@
 - `cd bitergia_deployment`.
 - `go get -u github.com/go-sql-driver/mysql`.
 - `make`.
-- `PASS=XXX ./create_shuser.sh`.
-- `PASS=XXX ./init_sortinghat.sh`.
+- `PASS=XXX ./sortinghat/create_shuser.sh`.
+- `PASS=XXX ./sortinghat/init_sortinghat.sh`.
 - `mkdir arthurd_logs; ./arthurd.sh`.
 
 # Tools
