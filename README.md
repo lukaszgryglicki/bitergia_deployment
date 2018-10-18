@@ -64,7 +64,7 @@ This saves data into ES indices and into SortingHat database. All details about 
 - Slack: `` API_TOKEN=`cat /etc/slack/onos-token` PASS=XXX ./elk_slack.sh ``.
 - Jira: `JIRA_USER=username JIRA_PWD=XXX PASS=XXX ./elk_jira.sh`.
 - Confluence: `PASS=XXX ./elk_confluence.sh`.
-- Use any of `get_es_`... script to get informations about indexes/types created.
+- Use any of `es/get_es_`... script to get informations about indexes/types created.
 
 # Enchance SortingHat DB
 
@@ -72,3 +72,7 @@ Once you have all the data, enchance SortingHat DB.
 
 - Run SortingHat automatic enrichments: `` GENDERIZE_TOKEN=`cat /etc/genderize.io/key` PASS=XXX ./sortinghat_workflow.sh ``
 - Import `github_users.json` from `cncf/devstats`: `PASS=XXX ./json2hat`.
+
+# Running Kibiter
+
+- `KIBITER_PATH=/some/path/kibiter/bin/kibana ./kibiter.sh &`.
