@@ -82,6 +82,12 @@ Once you have all the data, enchance SortingHat DB.
 
 - `KIBITER_PATH=/some/path/kibiter/bin/kibana ./kibiter.sh &`.
 
+# Running SirMordred
+
+It uses `mordred.cfg` and `onos.json` configuration files.
+
+- Use: `sirmordred -c mordred.cfg`.
+
 # Manage ElacticSearch aliases
 
 By default we use aliases for all indexes, for example `git`, `github` etc. They point to `git_v1`, `github_v1` by default.
@@ -90,7 +96,10 @@ Aliases were creaed by `VERSION='_v1' ./es/alias_all.sh`, command `_v1` is a rea
 - You can switch to `_v2` indexes via: `FROM_VERSION='_v1' TO_VERSION='_v2' ./es/switch_all.sh`, so now `git` will point to `git_v2`.
 - Then you can switch back to `_v1` via: `FROM_VERSION='_v2' TO_VERSION='_v1' ./es/switch_all.sh`.
 - If you generated all data without index aliases, you can `reindex` data using `elasticdump` to point to `_v1` for example: `REINDEX=1 VERSION='_v1' ./es/alias_all.sh`. It will keep all data nad metadata.
-- You cna drop `_v2` version via: `VERSION='_v2' es/drop_all.sh`.
+- You can drop `_v2` version via: `VERSION='_v2' es/drop_all.sh`.
+- All commands: `es/switch_all.sh`, `es/alias_all.sh`, `es/switch_drop.sh` use `indexes.txt` file. It contains list of indexes to process. You can specify indexes list manyally via prepending command with `ONLY="index1 index2 ... indexN"`.
+- You can dump any index to a bunch of JSON files via: `./es/es_dump.sh indexname filename`. It will create few files `filename.type.json`, where `type` is: `alias, analyzer, data, mapping, settings`. `data` is the actual index data, remaining files are metadata.
+- You can restore index from a bunch of JSON files created by the above command via: `./es/es_restore.sh indexname filename`, it will expect to find 5 JSON files `filename.type.json`, where `type` is: `alias, analyzer, data, mapping, settings`.
 
 This is all useful when you want to generate data from ELK first and then switch to v2 to see how SirMordred worked, to do so:
 
