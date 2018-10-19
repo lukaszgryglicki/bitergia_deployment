@@ -3,12 +3,12 @@
 # NOMETA=1 (skip restoring metadata)
 if [ -z "$1" ]
 then
-  echo "$0: please provide from index as a first argument"
+  echo "$0: please provide index to restore as a first argument"
   exit 1
 fi
 if [ -z "$2" ]
 then
-  echo "$0: please provide file name as a second argument (only root filename, like: git)"
+  echo "$0: please provide input file name as a second argument (only root filename, like: git)"
   exit 2
 fi
 if [ -z "${NOMETA}" ]

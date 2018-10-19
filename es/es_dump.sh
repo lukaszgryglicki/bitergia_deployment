@@ -8,7 +8,7 @@ then
 fi
 if [ -z "$2" ]
 then
-  echo "$0: please provide file name as a second argument (only root filename, like: git)"
+  echo "$0: please provide output file name as a second argument (only root filename, like: git)"
   exit 2
 fi
 if [ -z "${NOMETA}" ]
