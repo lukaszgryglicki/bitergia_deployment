@@ -1,0 +1,1 @@
+{"query":{"bool":{"must":[{"match":{"name":"n"}},{"match":{"tag":"t"}}]}}}
