@@ -1,5 +1,8 @@
 #!/bin/sh
 # REINDEX=1 (reindex existing data - use when you have no aliases and indexes use the names that should be aliases)
+if [ -z "${ES_URL}" ]
+  ES_URL="localhost:9200"
+fi
 if [ -z "${INDEXES}" ]
 then
   echo "$0: please provide indexes to alias via INDEXES='ind1 ind2 ... indN'"

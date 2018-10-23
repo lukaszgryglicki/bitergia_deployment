@@ -1,2 +1,5 @@
 #!/bin/bash
-curl -XGET 'http://localhost:9200/_mapping?pretty'
+if [ -z "${ES_URL}" ]
+  ES_URL="localhost:9200"
+fi
+curl -XGET "${ES_URL}/_mapping?pretty"

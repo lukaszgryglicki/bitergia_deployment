@@ -1,4 +1,10 @@
 #!/bin/bash
+if [ -z "${ES_URL}" ]
+  ES_URL="localhost:9200"
+fi
+if [ -z "${ES_URL}" ]
+  ES_URL="localhost:9200"
+fi
 if [ -z "$1" ]
 then
   echo "$0: please provide index name as a first argument"
@@ -22,4 +28,4 @@ then
   echo '{"query":{"match":{"type":"svars"}}}'
   exit 3
 fi
-curl -XPOST -H 'Content-Type: application/json' "localhost:9200/${1}/${2}/_search?pretty" -d "$3"
+curl -XPOST -H 'Content-Type: application/json' "${ES_URL}/${1}/${2}/_search?pretty" -d "$3"

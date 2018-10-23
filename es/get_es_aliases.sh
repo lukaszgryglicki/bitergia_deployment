@@ -1,2 +1,5 @@
 #!/bin/bash
-curl -XGET "localhost:9200/_cat/aliases?v"
+if [ -z "${ES_URL}" ]
+  ES_URL="localhost:9200"
+fi
+curl -XGET "${ES_URL}/_cat/aliases?v"

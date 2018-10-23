@@ -1,4 +1,7 @@
 #!/bin/bash
+if [ -z "${ES_URL}" ]
+  ES_URL="localhost:9200"
+fi
 if [ -z "$1" ]
 then
   echo "$0: please provide index name as an argument"
@@ -10,6 +13,6 @@ if [ "${base}" = '.kibana' ]
 then
   TYPE=doc
 fi
-curl -XPUT "localhost:9200/${1}"
+curl -XPUT "${ES_URL}/${1}"
 echo "${1}/${TYPE}"
-curl -XPOST -H 'Content-Type: application/json' "localhost:9200/${1}/${TYPE}?refresh=wait_for" -d '{}'
+curl -XPOST -H 'Content-Type: application/json' "${ES_URL}/${1}/${TYPE}?refresh=wait_for" -d '{}'

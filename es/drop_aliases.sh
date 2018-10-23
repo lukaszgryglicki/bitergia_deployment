@@ -1,4 +1,7 @@
 #!/bin/sh
+if [ -z "${ES_URL}" ]
+  ES_URL="localhost:9200"
+fi
 if [ -z "${INDEXES}" ]
 then
   echo "$0: please provide indexes to drop via INDEXES='ind1 ind2 ... indN'"
