@@ -19,6 +19,7 @@ then
   echo '{"query":{"match":{"type":"sact"}}}'
   echo '{"query":{"match":{"type":"sactivity_repo_groups"}}}'
   echo '{"query":{"match":{"period":"q"}}}'
+  echo '{"query":{"match":{"type":"svars"}}}'
   exit 3
 fi
 curl -XPOST -H 'Content-Type: application/json' "localhost:9200/${1}/${2}/_search?pretty" -d "$3"
