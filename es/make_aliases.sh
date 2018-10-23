@@ -1,6 +1,7 @@
 #!/bin/sh
 # REINDEX=1 (reindex existing data - use when you have no aliases and indexes use the names that should be aliases)
 if [ -z "${ES_URL}" ]
+then
   ES_URL="localhost:9200"
 fi
 if [ -z "${INDEXES}" ]

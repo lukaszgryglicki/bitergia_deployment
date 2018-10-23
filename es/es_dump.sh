@@ -2,6 +2,7 @@
 # NODATA=1 (skip dumping data)
 # NOMETA=1 (skip dumping metadata)
 if [ -z "${ES_URL}" ]
+then
   ES_URL="localhost:9200"
 fi
 if [ -z "$1" ]
