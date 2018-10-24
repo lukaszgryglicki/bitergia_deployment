@@ -57,7 +57,7 @@ This only runs backends and stores results in `*.log` files.
 
 # Run ELK tasks
 
-Please not that aliases are optional, they're only for allowing multiple test deployments at the same time and option to easy switch between them.
+Please note that aliases are optional, they're only for allowing multiple test deployments at the same time and option to easy switch between them.
 
 First, create aliases for indexes to use:
 
