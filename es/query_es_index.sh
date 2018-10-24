@@ -20,6 +20,7 @@ then
   echo '{"query":{"query_string":{"query":"type:trepo_groups AND repo_group_name:\"cncf/devstats\""}}}'
   echo '{"query":{"query_string":{"query":"type:sactivity_repo_groups AND period:y"}}}'
   echo '{"query":{"query_string":{"query":"type:itvars AND iname:vvalue AND tag_time:\"2014-01-01 13:00:00\""}}}'
+  echo '{"query":{"query_string":{"query":"type:sactivity_repo_groups AND data.ivalue:0.14"}}}'
   exit 3
 fi
 curl -XPOST -H 'Content-Type: application/json' "${ES_URL}/${1}/${2}/_search?pretty" -d "$3"
