@@ -119,3 +119,9 @@ More info regarding index aliases and index dump/restore process:
 - All commands: `es/switch_all.sh`, `es/alias_all.sh`, `es/switch_drop.sh` use `indexes.txt` file. It contains list of indexes to process. You can specify indexes list manyally via prepending command with `ONLY="index1 index2 ... indexN"`.
 - You can dump any index to a bunch of JSON files via: `./es/es_dump.sh indexname filename`. It will create few files `filename.type.json`, where `type` is: `alias, analyzer, data, mapping, settings`. `data` is the actual index data, remaining files are metadata.
 - You can restore index from a bunch of JSON files created by the above command via: `./es/es_restore.sh indexname filename`, it will expect to find 5 JSON files `filename.type.json`, where `type` is: `alias, analyzer, data, mapping, settings`.
+
+# ES queries
+
+DevStats already supports ElasticSearch output.
+
+- See `es/query_es_index.sh` and/or `es/search_es_index.sh` for example queries.
