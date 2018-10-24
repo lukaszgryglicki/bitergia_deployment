@@ -1,7 +1,7 @@
 #!/bin/bash
 if [ -z "${JIRA_USER}" ]
 then
-  echo -n "Jira user key: "
+  echo -n "Jira user: "
   read JIRA_USER
 fi
 if [ -z "${JIRA_PWD}" ]
