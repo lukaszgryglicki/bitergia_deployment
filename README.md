@@ -57,6 +57,8 @@ This only runs backends and stores results in `*.log` files.
 
 # Run ELK tasks
 
+Please not that aliases are optional, they're only for allowing multiple test deployments at the same time and option to easy switch between them.
+
 First, create aliases for indexes to use:
 
 - `VERSION='_v1' ./es/alias_all.sh`.
@@ -85,12 +87,14 @@ Once you have all the data, enchance SortingHat DB.
 
 # Running SirMordred
 
-It uses `mordred.cfg` and `onos.json` configuration files.
+It uses `mordred.cfg` and `onos.json` configuration files. Patching is optional and only required when you plan to use index aliases.
 
 - SirMordred doesn't support aliases to aliases yet, apply this patch: `patch /usr/local/lib/python3.6/dist-packages/sirmordred/task_panels.py patches/task_panels.diff`.
 - Use: `mordred.sh`.
 
-# Manage ElacticSearch aliases
+# Manage ElacticSearch aliases (optional)
+
+This is all optional as described above.
 
 By default we use aliases for all indexes, for example `git`, `github` etc. They point to `git_v1`, `github_v1` by default.
 Aliases were creaed by `VERSION='_v1' ./es/alias_all.sh`, command `_v1` is a real index suffix.
@@ -110,7 +114,7 @@ This is all useful when you want to generate data from ELK first and then switch
 - See that data in Kibiter.
 - Then possibly switch between v1 and v2 as you like.
 
-Mor einfo regarding index aliases and index dump/restore process:
+More info regarding index aliases and index dump/restore process:
 
 - All commands: `es/switch_all.sh`, `es/alias_all.sh`, `es/switch_drop.sh` use `indexes.txt` file. It contains list of indexes to process. You can specify indexes list manyally via prepending command with `ONLY="index1 index2 ... indexN"`.
 - You can dump any index to a bunch of JSON files via: `./es/es_dump.sh indexname filename`. It will create few files `filename.type.json`, where `type` is: `alias, analyzer, data, mapping, settings`. `data` is the actual index data, remaining files are metadata.
