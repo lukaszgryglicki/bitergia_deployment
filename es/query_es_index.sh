@@ -24,6 +24,7 @@ then
   echo '{"query":{"query_string":{"query":"type:isactivity_repo_groups AND period:y AND name:(\"cncf\/devstats\" OR \"cncf\/gitdm\")"}}}'
   echo '{"query":{"query_string":{"query":"type:iswatchers AND period:d AND series:watchcncflandscapewatch"}}}'
   echo '{"query":{"query_string":{"query":"type:iscompany_activity AND period:q AND series:companyallcommits AND name:(Google OR \"Red Hat\")"}}}'
+  echo '{"query":{"query_string":{"query":"type:commit AND committer_login:lukaszgryglicki"}}}'
   exit 3
 fi
 curl -XPOST -H 'Content-Type: application/json' "${ES_URL}/${1}/${2}/_search?pretty" -d "$3"
