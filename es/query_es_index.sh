@@ -27,6 +27,7 @@ then
   echo '{"query":{"query_string":{"query":"type:commit AND committer_login:lukaszgryglicki"}}}'
   echo '{"query":{"query_string":{"query":"type:issue AND milestone_title:\"v1.12\""}}}'
   echo '{"query":{"query_string":{"query":"type:issue AND repo_group:Kubernetes AND milestone_title:v1.12"}}}'
+  echo '{"query":{"query_string":{"query":"type:pr merged:true"}}}'
   exit 3
 fi
 curl -XPOST -H 'Content-Type: application/json' "${ES_URL}/${1}/${2}/_search?pretty" -d "$3"
