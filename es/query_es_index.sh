@@ -29,6 +29,7 @@ then
   echo '{"query":{"query_string":{"query":"type:issue AND repo_group:Kubernetes AND milestone_title:v1.12"}}}'
   echo '{"query":{"query_string":{"query":"type:pr merged:true"}}}'
   echo '{"query":{"query_string":{"query":"type:tes_periodsAND devstats_period:d7"}}}'
+  echo '{"query":{"query_string":{"query":"type:ishcom AND period:q AND series:hcomcontributions"}}}'
   exit 3
 fi
 curl -XPOST -H 'Content-Type: application/json' "${ES_URL}/${1}/${2}/_search?pretty" -d "$3"
