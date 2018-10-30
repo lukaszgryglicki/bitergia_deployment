@@ -3,7 +3,7 @@
 # NOMETA=1 (skip restoring metadata)
 if [ -z "${ES_URL}" ]
 then
-  ES_URL="localhost:9200"
+  ES_URL="http://localhost:9200"
 fi
 if [ -z "$1" ]
 then
