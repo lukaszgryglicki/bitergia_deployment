@@ -18,4 +18,4 @@ then
   echo "$0: please provide search query as a third argument:"
   exit 3
 fi
-curl -XPOST -H 'Content-Type: application/json' "${ES_URL}/${1}/${2}/_delete_by_query" -d "$3"
+curl -XPOST -H 'Content-Type: application/json' "${ES_URL}/${1}/${2}/_delete_by_query" -d "{\"query\":{\"query_string\":{\"query\":\"${3}\"}}}"
