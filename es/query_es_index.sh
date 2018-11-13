@@ -34,6 +34,7 @@ then
   echo 'type:tes_periodsAND devstats_period:d7'
   echo 'type:ishcom AND period:q AND series:hcomcontributions'
   echo 'type:(issue OR pr)'
+  echo 'type:text AND full_body:\"kubernetes bug\"'
   exit 3
 fi
 curl -XPOST -H 'Content-Type: application/json' "${ES_URL}/${1}/${2}/_search?pretty" -d "{\"query\":{\"query_string\":{\"query\":\"${3}\"}}}"
