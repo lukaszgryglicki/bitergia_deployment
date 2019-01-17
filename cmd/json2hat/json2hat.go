@@ -297,6 +297,9 @@ func getConnectString() string {
 		if params == "" {
 			params = "?charset=utf8"
 		}
+		if params == "-" {
+			params = ""
+		}
 		dsn = fmt.Sprintf(
 			"%s:%s@%s(%s:%s)/%s%s",
 			user,
