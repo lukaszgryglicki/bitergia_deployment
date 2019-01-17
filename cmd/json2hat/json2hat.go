@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"net/http"
 	"os"
 	"regexp"
 	"runtime/debug"
@@ -259,20 +260,99 @@ func importAffs(db *sql.DB, users *gitHubUsers) {
 	fmt.Printf("Hits: %d, affiliations: %d, companies: %d\n", hits, allAffs, len(companies))
 }
 
+// getConnectString - get MariaDB SH (Sorting Hat) database DSN
+// Either provide full DSN via SH_DSN='shuser:shpassword@tcp(shhost:shport)/shdb?charset=utf8'
+// Or use some SH_ variables, only SH_PASS is required
+// Defaults are: "shuser:required_pwd@tcp(localhost:3306)/shdb?charset=utf8
+// SH_DSN has higher priority; if set no SH_ varaibles are used
+func getConnectString() string {
+	//dsn := "shuser:"+os.Getenv("PASS")+"@/shdb?charset=utf8")
+	dsn := os.Getenv("SH_DSN")
+	if dsn == "" {
+		pass := os.Getenv("SH_PASS")
+		if pass == "" {
+			fatalf("please specify database password via SH_PASS=...")
+		}
+		user := os.Getenv("SH_PASS")
+		if user == "" {
+			user = "shuser"
+		}
+		proto := os.Getenv("SH_PROTO")
+		if proto == "" {
+			proto = "tcp"
+		}
+		host := os.Getenv("SH_HOST")
+		if host == "" {
+			host = "localhost"
+		}
+		port := os.Getenv("SH_PORT")
+		if port == "" {
+			port = "3306"
+		}
+		db := os.Getenv("SH_DB")
+		if db == "" {
+			db = "shdb"
+		}
+		params := os.Getenv("SH_PARAMS")
+		if params == "" {
+			params = "?charset=utf8"
+		}
+		dsn = fmt.Sprintf(
+			"%s:%s@%s(%s:%s)/%s%s",
+			user,
+			pass,
+			proto,
+			host,
+			port,
+			db,
+			params,
+		)
+	}
+	return dsn
+}
+
+// getAffiliationsJSONBody - get affiliations JSON contents
+// First try to get JSON from SH_LOCAL_JSON_PATH which defaults to "github_users.json"
+// Fallback to SH_REMOTE_JSON_PATH which defaults to "https://raw.githubusercontent.com/cncf/gitdm/master/github_users.json"
+func getAffiliationsJSONBody() []byte {
+	jsonLocalPath := os.Getenv("SH_LOCAL_JSON_PATH")
+	if jsonLocalPath == "" {
+		jsonLocalPath = "github_users.json"
+	}
+	data, err := ioutil.ReadFile(jsonLocalPath)
+	if err != nil {
+		switch err := err.(type) {
+		case *os.PathError:
+			jsonRemotePath := os.Getenv("SH_REMOTE_JSON_PATH")
+			if jsonRemotePath == "" {
+				jsonRemotePath = "https://raw.githubusercontent.com/cncf/gitdm/master/github_users.json"
+			}
+			response, err2 := http.Get(jsonRemotePath)
+			fatalOnError(err2)
+			defer func() { _ = response.Body.Close() }()
+			data, err2 = ioutil.ReadAll(response.Body)
+			fatalOnError(err2)
+			fmt.Printf("Read %d bytes remote JSON data from %s\n", len(data), jsonRemotePath)
+			return data
+		default:
+			fatalOnError(err)
+		}
+	}
+	fmt.Printf("Read %d bytes local JSON data from %s\n", len(data), jsonLocalPath)
+	return data
+}
+
 func main() {
 	// Connect to MariaDB
-	pass := os.Getenv("PASS")
-	if pass == "" {
-		fatalf("please specify database password via PASS=...")
-	}
-	db, err := sql.Open("mysql", "shuser:"+os.Getenv("PASS")+"@/shdb?charset=utf8")
+	dsn := getConnectString()
+	db, err := sql.Open("mysql", dsn)
 	fatalOnError(err)
 	defer func() { fatalOnError(db.Close()) }()
 
 	// Parse github_users.json
 	var users gitHubUsers
-	data, err := ioutil.ReadFile("./github_users.json")
-	fatalOnError(err)
+	// Read json data from, local file falling back to remote file
+	data := getAffiliationsJSONBody()
 	fatalOnError(json.Unmarshal(data, &users))
 
 	// Import affiliations
