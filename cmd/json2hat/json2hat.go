@@ -273,7 +273,7 @@ func getConnectString() string {
 		if pass == "" {
 			fatalf("please specify database password via SH_PASS=...")
 		}
-		user := os.Getenv("SH_PASS")
+		user := os.Getenv("SH_USER")
 		if user == "" {
 			user = "shuser"
 		}
