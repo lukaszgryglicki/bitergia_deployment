@@ -13,12 +13,13 @@ import (
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
+	yaml "gopkg.in/yaml.v2"
 )
 
-// gitHubUsers - list of GitHub user data from cncf/gitdm.
+// gitHubUsers - list of GitHub user data from cncf/devstats.
 type gitHubUsers []gitHubUser
 
-// gitHubUser - single GitHug user entry from cncf/gitdm `github_users.json` JSON.
+// gitHubUser - single GitHug user entry from cncf/devstats `github_users.json` JSON.
 type gitHubUser struct {
 	Login       string   `json:"login"`
 	Email       string   `json:"email"`
@@ -36,6 +37,12 @@ type affData struct {
 	company string
 	from    time.Time
 	to      time.Time
+}
+
+// AllAcquisitions contain all company acquisitions data
+// Acquisition contains acquired company name regular expression and new company name for it.
+type allAcquisitions struct {
+	Acquisitions [][2]string `yaml:"acquisitions"`
 }
 
 // stringSet - set of strings
@@ -79,6 +86,41 @@ func timeParseAny(dtStr string) time.Time {
 	return time.Now()
 }
 
+// mapCompanyName: maps company name to possibly new company name (when one was acquired by the another)
+// If mapping happens, store it in the cache for speed
+// stat:
+// --- [no_regexp_match, cache] (unmapped)
+// Company_name [match_regexp, match_cache]
+func mapCompanyName(comMap map[string][2]string, acqMap map[*regexp.Regexp]string, stat map[string][2]int, company string) string {
+	res, ok := comMap[company]
+	if ok {
+		if res[1] == "m" {
+			ary := stat[res[0]]
+			ary[1]++
+			stat[res[0]] = ary
+		} else {
+			ary := stat["---"]
+			ary[1]++
+			stat["---"] = ary
+		}
+		return res[0]
+	}
+	for re, res := range acqMap {
+		if re.MatchString(company) {
+			comMap[company] = [2]string{res, "m"}
+			ary := stat[res]
+			ary[0]++
+			stat[res] = ary
+			return res
+		}
+	}
+	comMap[company] = [2]string{company, "u"}
+	ary := stat["---"]
+	ary[0]++
+	stat["---"] = ary
+	return company
+}
+
 func updateProfile(db *sql.DB, uuid string, user *gitHubUser, countryCodes map[string]struct{}) {
 	var cols []string
 	var args []interface{}
@@ -117,7 +159,21 @@ func updateProfile(db *sql.DB, uuid string, user *gitHubUser, countryCodes map[s
 
 func addOrganization(db *sql.DB, company string) int {
 	_, err := db.Exec("insert into organizations(name) values(?)", company)
-	fatalOnError(err)
+	if err != nil {
+		if strings.Contains(err.Error(), "Error 1062") {
+			rows, err2 := db.Query("select name from organizations where name = ?", company)
+			fatalOnError(err2)
+			var existingName string
+			for rows.Next() {
+				fatalOnError(rows.Scan(&existingName))
+			}
+			fatalOnError(rows.Err())
+			fatalOnError(rows.Close())
+			fmt.Printf("Warning: name collision: trying to insert '%s', exists: '%s'\n", company, existingName)
+		} else {
+			fatalOnError(err)
+		}
+	}
 	rows, err := db.Query("select id from organizations where name = ?", company)
 	fatalOnError(err)
 	var id int
@@ -136,7 +192,57 @@ func addEnrollment(db *sql.DB, uuid string, companyID int, from, to time.Time) {
 	fatalOnError(err)
 }
 
-func importAffs(db *sql.DB, users *gitHubUsers) {
+func importAffs(db *sql.DB, users *gitHubUsers, acqs *allAcquisitions) {
+	// Process acquisitions
+	fmt.Printf("Acquisitions: %+v\n", acqs.Acquisitions)
+	var (
+		acqMap map[*regexp.Regexp]string
+		comMap map[string][2]string
+		stat   map[string][2]int
+	)
+	var re *regexp.Regexp
+	acqMap = make(map[*regexp.Regexp]string)
+	comMap = make(map[string][2]string)
+	stat = make(map[string][2]int)
+	srcMap := make(map[string]string)
+	resMap := make(map[string]struct{})
+	idxMap := make(map[*regexp.Regexp]int)
+	for idx, acq := range acqs.Acquisitions {
+		re = regexp.MustCompile(acq[0])
+		res, ok := srcMap[acq[0]]
+		if ok {
+			fatalf("Acquisition number %d '%+v' is already present in the mapping and maps into '%s'", idx, acq, res)
+		}
+		srcMap[acq[0]] = acq[1]
+		_, ok = resMap[acq[1]]
+		if ok {
+			fatalf("Acquisition number %d '%+v': some other acquisition already maps into '%s', merge them", idx, acq, acq[1])
+		}
+		resMap[acq[1]] = struct{}{}
+		acqMap[re] = acq[1]
+		idxMap[re] = idx
+	}
+	for re, res := range acqMap {
+		i := idxMap[re]
+		for idx, acq := range acqs.Acquisitions {
+			if re.MatchString(acq[1]) && i != idx {
+				fatalf("Acquisition's number %d '%s' result '%s' matches other acquisition number %d '%s' which maps to '%s', simplify it: '%v' -> '%s'", idx, acq[0], acq[1], i, re, res, acq[0], res)
+			}
+			if re.MatchString(acq[0]) && res != acq[1] {
+				fatalf("Acquisition's number %d '%s' regexp '%s' matches other acquisition number %d '%s' which maps to '%s': result is different '%s'", idx, acq, acq[0], i, re, res, acq[1])
+			}
+		}
+	}
+
+	// Eventually clean affiliations data
+	if os.Getenv("SH_CLEANUP") != "" {
+		_, err := db.Exec("delete from enrollments")
+		fatalOnError(err)
+		_, err = db.Exec("delete from organizations")
+		fatalOnError(err)
+		fmt.Printf("Current affiliation data cleaned.\n")
+	}
+
 	// Fetch existing identities
 	rows, err := db.Query("select uuid, email, username, source from identities")
 	fatalOnError(err)
@@ -247,6 +353,8 @@ func importAffs(db *sql.DB, users *gitHubUsers) {
 				if company == "" {
 					continue
 				}
+				// Map using companies acquisitions/company names mapping
+				company = mapCompanyName(comMap, acqMap, stat, company)
 				companies[company] = struct{}{}
 				for uuid := range uuids {
 					affList = append(affList, affData{uuid: uuid, company: company, from: dtFrom, to: dtTo})
@@ -257,6 +365,7 @@ func importAffs(db *sql.DB, users *gitHubUsers) {
 		}
 	}
 	// fmt.Printf("affList: %+v\ncompanies: %+v\n", affList, companies)
+	// fmt.Printf("oname2id: %+v\ncompanies: %+v\n", oname2id, companies)
 
 	// Add companies
 	for company := range companies {
@@ -285,6 +394,19 @@ func importAffs(db *sql.DB, users *gitHubUsers) {
 		addEnrollment(db, uuid, companyID, aff.from, aff.to)
 	}
 	fmt.Printf("Hits: %d, affiliations: %d, companies: %d\n", hits, allAffs, len(companies))
+	for company, data := range stat {
+		if company == "---" {
+			fmt.Printf("Non-acquired companies: checked all regexp: %d, cache hit: %d\n", data[0], data[1])
+		} else {
+			fmt.Printf("Mapped to '%s': checked regexp: %d, cache hit: %d\n", company, data[0], data[1])
+		}
+	}
+	for company, data := range comMap {
+		if data[1] == "u" {
+			continue
+		}
+		fmt.Printf("Used mapping '%s' --> '%s'\n", company, data[0])
+	}
 }
 
 // getConnectString - get MariaDB SH (Sorting Hat) database DSN
@@ -343,7 +465,7 @@ func getConnectString() string {
 
 // getAffiliationsJSONBody - get affiliations JSON contents
 // First try to get JSON from SH_LOCAL_JSON_PATH which defaults to "github_users.json"
-// Fallback to SH_REMOTE_JSON_PATH which defaults to "https://raw.githubusercontent.com/cncf/gitdm/master/src/github_users.json"
+// Fallback to SH_REMOTE_JSON_PATH which defaults to "https://raw.githubusercontent.com/cncf/devstats/master/github_users.json"
 func getAffiliationsJSONBody() []byte {
 	jsonLocalPath := os.Getenv("SH_LOCAL_JSON_PATH")
 	if jsonLocalPath == "" {
@@ -355,7 +477,7 @@ func getAffiliationsJSONBody() []byte {
 		case *os.PathError:
 			jsonRemotePath := os.Getenv("SH_REMOTE_JSON_PATH")
 			if jsonRemotePath == "" {
-				jsonRemotePath = "https://raw.githubusercontent.com/cncf/gitdm/master/src/github_users.json"
+				jsonRemotePath = "https://raw.githubusercontent.com/cncf/devstats/master/github_users.json"
 			}
 			response, err2 := http.Get(jsonRemotePath)
 			fatalOnError(err2)
@@ -372,6 +494,37 @@ func getAffiliationsJSONBody() []byte {
 	return data
 }
 
+// getAcquisitionsYAMLBody - get company acquisitions and name mappings YAML body
+// First try to get YAML from SH_LOCAL_YAML_PATH which defaults to "companies.yaml"
+// Fallback to SH_REMOTE_YAML_PATH which defaults to "https://raw.githubusercontent.com/cncf/devstats/master/companies.yaml"
+func getAcquisitionsYAMLBody() []byte {
+	yamlLocalPath := os.Getenv("SH_LOCAL_YAML_PATH")
+	if yamlLocalPath == "" {
+		yamlLocalPath = "companies.yaml"
+	}
+	data, err := ioutil.ReadFile(yamlLocalPath)
+	if err != nil {
+		switch err := err.(type) {
+		case *os.PathError:
+			yamlRemotePath := os.Getenv("SH_REMOTE_YAML_PATH")
+			if yamlRemotePath == "" {
+				yamlRemotePath = "https://raw.githubusercontent.com/cncf/devstats/master/companies.yaml"
+			}
+			response, err2 := http.Get(yamlRemotePath)
+			fatalOnError(err2)
+			defer func() { _ = response.Body.Close() }()
+			data, err2 = ioutil.ReadAll(response.Body)
+			fatalOnError(err2)
+			fmt.Printf("Read %d bytes remote YAML data from %s\n", len(data), yamlRemotePath)
+			return data
+		default:
+			fatalOnError(err)
+		}
+	}
+	fmt.Printf("Read %d bytes local YAML data from %s\n", len(data), yamlLocalPath)
+	return data
+}
+
 func main() {
 	// Connect to MariaDB
 	dsn := getConnectString()
@@ -381,10 +534,16 @@ func main() {
 
 	// Parse github_users.json
 	var users gitHubUsers
-	// Read json data from, local file falling back to remote file
+	// Read json data from local file falling back to remote file
 	data := getAffiliationsJSONBody()
 	fatalOnError(json.Unmarshal(data, &users))
 
+	// Parse companies.yaml
+	var acqs allAcquisitions
+	// Read yaml data from local file falling back to remote file
+	data = getAcquisitionsYAMLBody()
+	fatalOnError(yaml.Unmarshal(data, &acqs))
+
 	// Import affiliations
-	importAffs(db, &users)
+	importAffs(db, &users, &acqs)
 }
